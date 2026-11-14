@@ -37,8 +37,8 @@
     "zod": "^3.23.8",
     "lucide-react": "^0.439.0",
     "react-share": "^5.1.0",
-    "react-dnd": "^16.3.1",
-    "react-dnd-html5-backend": "^16.1.1"
+    "react-dnd": "^2.4.0",
+    "react-dnd-html5-backend": "^2.4.0"
   },
   "devDependencies": {
     "typescript": "^5.4.0",
@@ -47,7 +47,8 @@
     "@types/react-dom": "^18.2.0",
     "ts-node": "^10.9.0",
     "prisma": "^5.14.0",
-    "@types/react-syntax-highlighter": "^15.5.11"
+    "@types/react-syntax-highlighter": "^15.6.1",
+    "@types/react-markdown": "^9.0.1"
   },
   "engines": {
     "node": ">=18.0.0"
