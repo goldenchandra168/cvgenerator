@@ -47,6 +47,7 @@ export interface CVResult {
   skillsMatchAnalysis: string;
   improvementTips: string[];
   portfolioSuggestions: string[];
+  branding?: PersonalBrandingOutput;
 }
 
 export interface PersonalBrandingOutput {
