@@ -59,8 +59,10 @@ program
       format: "html",
       theme: options.theme,
     });
+    console.log("✨ Membuat branding untuk CV...");
+    const branding = await createPersonalBranding(userData, jobInfo);
     console.log("💾 Menyimpan CV...");
-    await exportCVWithPDF(cvResult, options.output);
+    await exportCVWithPDF({ ...cvResult, branding }, options.output);
     console.log(`✅ CV lengkap! File tersimpan di ${options.output}`);
   });
 
@@ -143,10 +145,11 @@ program
       format: "html",
       theme: "light",
     });
-    await exportCVWithPDF(cvResult, `${options.output}/cv`);
 
     console.log("\n=== Langkah 4: Personal Branding ===");
     const branding = await createPersonalBranding(userData, jobInfo);
+    
+    await exportCVWithPDF({ ...cvResult, branding }, `${options.output}/cv`);
     await exportFiles({ resume: cvResult.markdown, coverLetter: "", interviewPrep: [] }, `${options.output}/branding`);
     const fs = await import("fs");
     fs.mkdirSync(`${options.output}/branding`, { recursive: true });
