@@ -1,0 +1,10 @@
+node_modules/
+.env
+.env.local
+.next/
+output/
+cv-output/
+branding-output/
+interview-output/
+*.log
+.DS_Store

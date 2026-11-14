@@ -1,0 +1,56 @@
+{
+  "name": "autoapply-ai",
+  "version": "2.0.0",
+  "description": "AI Job Match & Portfolio Customizer - SaaS CV/Resume Generator with Personal Branding",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "cli": "ts-node cli.ts",
+    "build:cli": "tsc",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "14.2.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "@anthropic-ai/sdk": "^0.30.0",
+    "next-auth": "^4.24.5",
+    "@next-auth/prisma-adapter": "^1.0.7",
+    "@prisma/client": "^5.14.0",
+    "puppeteer": "^22.10.0",
+    "react-icons": "^5.3.0",
+    "tailwindcss": "^3.4.0",
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "tailwind-merge": "^2.5.0",
+    "react-hook-form": "^7.53.0",
+    "@hookform/resolvers": "^3.4.0",
+    "react-markdown": "^9.0.1",
+    "react-pdf": "^9.1.0",
+    "react-syntax-highlighter": "^15.6.1",
+    "react-hot-toast": "^2.4.1",
+    "zod": "^3.23.8",
+    "lucide-react": "^0.439.0",
+    "react-share": "^5.1.0",
+    "react-dnd": "^16.3.1",
+    "react-dnd-html5-backend": "^16.1.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "ts-node": "^10.9.0",
+    "prisma": "^5.14.0",
+    "@types/react-markdown": "^9.0.0",
+    "@types/react-syntax-highlighter": "^15.5.11"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
