@@ -1,16 +1,7 @@
 import { writeFileSync, mkdirSync, existsSync } from "fs";
 import { resolve } from "path";
 import puppeteer from "puppeteer";
-import { PersonalBrandingOutput } from "../types/resume";
-
-interface CVResult {
-  html: string;
-  markdown: string;
-  skillsMatchAnalysis: string;
-  improvementTips: string[];
-  portfolioSuggestions: string[];
-  branding: PersonalBrandingOutput;
-}
+import { CVResult } from "../types/resume";
 
 export async function exportCVWithPDF(
   data: CVResult,
@@ -20,13 +11,15 @@ export async function exportCVWithPDF(
     mkdirSync(outputDir, { recursive: true });
   }
 
+  const branding = data.branding;
+
   // HTML untuk PDF
   const htmlContent = `
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>${data.branding.headline}</title>
+  <title>${branding?.headline || "CV"}</title>
   <style>
     body {
       font-family: 'Segoe UI', Roboto, sans-serif;
@@ -51,12 +44,12 @@ export async function exportCVWithPDF(
 <body>
   <div class="container">
     <div class="header">
-      <h1 class="name">${data.branding.headline}</h1>
-      <p class="title">${data.branding.summary.split('\n')[0]}</p>
+      <h1 class="name">${branding?.headline || ""}</h1>
+      <p class="title">${branding?.summary.split('\n')[0] || ""}</p>
     </div>
     <div class="section">
       <h2>SUMMARY</h2>
-      <p>${data.branding.summary}</p>
+      <p>${branding?.summary || ""}</p>
     </div>
     <div class="section">
       <h2>KEY SKILLS</h2>
@@ -91,10 +84,12 @@ export async function exportCVWithPDF(
   );
 
   // Simpan branding
-  writeFileSync(
-    resolve(outputDir, "personal-branding.json"),
-    JSON.stringify(data.branding, null, 2)
-  );
+  if (branding) {
+    writeFileSync(
+      resolve(outputDir, "personal-branding.json"),
+      JSON.stringify(branding, null, 2)
+    );
+  }
 
   // Generate PDF with Puppeteer
   try {
