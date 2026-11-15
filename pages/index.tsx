@@ -20,6 +20,12 @@ type Session = {
   user?: SessionUser;
 } | null;
 
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
+
 export default function Home() {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
