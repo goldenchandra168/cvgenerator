@@ -166,5 +166,5 @@ program
     console.log(`   - Interview: ${options.output}/interview/`);
   });
 
-// Parse CLI arguments
+// Parse CLI arguments with process.argv (updated)
 program.parse(process.argv);
