@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { UserData, JobInfo } from "../../../types/resume";
-import { designCV } from "../../../lib/design-cv";
+import { UserData, JobInfo } from "../../types/resume";
+import { designCV } from "../../lib/design-cv";
 
 export const config = {
   api: {
