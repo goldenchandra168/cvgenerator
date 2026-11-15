@@ -20,6 +20,9 @@ export async function exportCVWithPDF(
 
   const branding = data.branding;
 
+  // Helper untuk safely get first line of summary
+  const summaryFirstLine = branding?.summary ? branding.summary.split('\n')[0] : "";
+
   // HTML untuk PDF
   const htmlContent = `
 <!DOCTYPE html>
@@ -52,7 +55,7 @@ export async function exportCVWithPDF(
   <div class="container">
     <div class="header">
       <h1 class="name">${branding?.headline || ""}</h1>
-      <p class="title">${branding?.summary.split('\n')[0] || ""}</p>
+      <p class="title">${summaryFirstLine}</p>
     </div>
     <div class="section">
       <h2>SUMMARY</h2>
