@@ -166,4 +166,4 @@ program
     console.log(`   - Interview: ${options.output}/interview/`);
   });
 
-program.parse();
+program.parse(process.argv);
