@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { UserData, JobInfo } from "../../../types/resume";
-import { generateContent } from "../../../lib/generate";
-import { exportFiles } from "../../../lib/export";
+import { UserData, JobInfo } from "../../types/resume";
+import { generateContent } from "../../lib/generate";
+import { exportFiles } from "../../lib/export";
 
 export const config = {
   api: {
