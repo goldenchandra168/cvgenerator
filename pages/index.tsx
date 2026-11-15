@@ -9,14 +9,33 @@ type UserData = {
   applied: number;
 };
 
+type SessionUser = {
+  id?: string;
+  email?: string | null;
+  name?: string | null;
+  image?: string | null;
+};
+
+type Session = {
+  user?: SessionUser;
+} | null;
+
 export default function Home() {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
-  const { data: session, status } = useSession();
+  const { data: session, status } = useSession({ required: false });
   const router = useRouter();
 
+  if (status === "loading") {
+    return (
+      <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </main>
+    );
+  }
+
   useEffect(() => {
-    if (session) {
+    if (session && session.user && session.user.email) {
       fetch("/api/user-data", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -35,6 +54,8 @@ export default function Home() {
     router.push("/dashboard");
   };
 
+  const sessionUser: SessionUser | undefined = session?.user;
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -47,7 +68,7 @@ export default function Home() {
             Buat CV profesional, strategi personal branding, dan persiapan wawancara secara otomatis menggunakan AI untuk semua lowongan kerja Anda.
           </p>
 
-          {!session ? (
+          {!sessionUser ? (
             <div className="space-y-4">
               <p className="text-lg text-gray-500 mb-8">
                 Login dengan Google untuk memulai
