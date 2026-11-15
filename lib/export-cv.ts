@@ -1,10 +1,17 @@
 import { writeFileSync, mkdirSync, existsSync } from "fs";
 import { resolve } from "path";
 import puppeteer from "puppeteer";
-import { CVResult } from "../types/resume";
+
+interface CVResultInput {
+  html: string;
+  markdown: string;
+  skillsMatchAnalysis: string;
+  improvementTips: string[];
+  branding?: { headline?: string; summary?: string };
+}
 
 export async function exportCVWithPDF(
-  data: CVResult,
+  data: CVResultInput,
   outputDir: string
 ): Promise<void> {
   if (!existsSync(outputDir)) {
