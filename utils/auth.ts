@@ -1,9 +1,22 @@
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+type PrismaClientType = {
+  $connect: () => Promise<void>;
+  $disconnect: () => Promise<void>;
+};
+
+declare global {
+  // eslint-disable-next-line no-var
+  var prisma: PrismaClientType | undefined;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { PrismaClient } = require("@prisma/client");
+
+const prisma = global.prisma || new PrismaClient();
+if (process.env.NODE_ENV !== "production") global.prisma = prisma;
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
