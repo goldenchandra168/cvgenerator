@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { UserData, JobInfo } from "../../../types/resume";
-import { scrapeJobListing } from "../../../lib/scrape-job";
-import { parseResume } from "../../../lib/parse-resume";
-import { designCV } from "../../../lib/design-cv";
-import { createPersonalBranding } from "../../../lib/personal-branding";
-import { prepareInterview } from "../../../lib/interview-prep";
+import { UserData, JobInfo } from "../../types/resume";
+import { scrapeJobListing } from "../../lib/scrape-job";
+import { parseResume } from "../../lib/parse-resume";
+import { designCV } from "../../lib/design-cv";
+import { createPersonalBranding } from "../../lib/personal-branding";
+import { prepareInterview } from "../../lib/interview-prep";
 
 export const config = {
   api: {

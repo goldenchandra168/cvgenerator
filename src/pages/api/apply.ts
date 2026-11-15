@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { UserData, JobInfo } from '../../../types/resume';
-import { generateContent } from '../../../lib/generate-content';
-import { exportFiles } from '../../../lib/export-files';
+import { UserData, JobInfo } from '../../types/resume';
+import { generateContent } from '../../lib/generate-content';
+import { exportFiles } from '../../lib/export-files';
 
 export default async function handler(
   req: NextApiRequest,
