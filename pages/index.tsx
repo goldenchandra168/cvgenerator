@@ -42,17 +42,33 @@ export default function Home() {
 
   useEffect(() => {
     if (session && session.user && session.user.email) {
+      setLoading(true);
       fetch("/api/user-data", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: session.user.id, email: session.user.email })
       })
-        .then(res => res.json())
+        .then(res => {
+          if (!res.ok) throw new Error("API failed");
+          return res.json();
+        })
         .then(data => {
           setUserData(data);
           setLoading(false);
         })
-        .catch(err => console.error("Error:", err));
+        .catch(err => {
+          console.error("Error fetching user data:", err);
+          // Fallback data jika API gagal agar tidak 500
+          setUserData({
+            name: session.user?.name || "User",
+            email: session.user?.email || "",
+            cvCount: 0,
+            applied: 0
+          });
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
     }
   }, [session]);
 
